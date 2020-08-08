@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/SaberChulainn/Chulainn-Bot/issues"
   },
-  "homepage": "https://github.com/SaberChulainn/Chulainn-Bot#readme"
+  "homepage": "https://github.com/SaberChulainn/Chulainn-Bot#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0"
+  }
 }
