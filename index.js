@@ -8,5 +8,7 @@ client.login(BOT_TOKEN);
 client.on('message', message => {
 	if (message.content === `${prefix}test`) {
         message.channel.send('What you want loser.');
-    } 
+    } else if (message.content === `${prefix}avatar`){
+        message.channel.send(message.author.displayAvatarURL())
+    }
 });
