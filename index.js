@@ -1,5 +1,7 @@
 const Discord = require("discord.js");
 const {owner_id, prefix, BOT_TOKEN} = require('./config.json');
+const Jikan = require('jikan-node');
+const mal = new Jikan();
 
 const client = new Discord.Client();
 
@@ -22,6 +24,8 @@ client.on('message', message => {
             } catch (err) {
             message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
             }
+    } else if (message.content.startsWith(`${prefix}searchmal`)){
+
     }
 });
 
