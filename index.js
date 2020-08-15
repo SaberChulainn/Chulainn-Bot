@@ -8,12 +8,12 @@ const client = new Discord.Client();
 client.login(BOT_TOKEN);
 
 client.on('message', message => {
+    const args = message.content.split(" ").slice(1);
 	if (message.content === `${prefix}test`) {
         message.channel.send('What you want loser.');
     } else if (message.content === `${prefix}avatar`){
         message.channel.send(message.author.displayAvatarURL())
     } else if (message.content.startsWith(`${prefix}eval`)){
-        const args = message.content.split(" ").slice(1);
         if(message.author.id !== owner_id) return;
         try {
             const code = args.join(" ");
@@ -25,7 +25,10 @@ client.on('message', message => {
             message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
             }
     } else if (message.content.startsWith(`${prefix}searchmal`)){
-
+        console.log(args);
+        mal.search("anime", args, "page")
+        .then(info =>  message.channel.send(info.results[1].url))
+        .catch(err => console.log(err))
     }
 });
 
