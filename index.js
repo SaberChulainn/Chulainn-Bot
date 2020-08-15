@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const {prefix, BOT_TOKEN} = require('./config.json');
+const {owner_id, prefix, BOT_TOKEN} = require('./config.json');
 
 const client = new Discord.Client();
 
@@ -10,5 +10,25 @@ client.on('message', message => {
         message.channel.send('What you want loser.');
     } else if (message.content === `${prefix}avatar`){
         message.channel.send(message.author.displayAvatarURL())
+    } else if (message.content.startsWith(`${prefix}eval`)){
+        const args = message.content.split(" ").slice(1);
+        if(message.author.id !== owner_id) return;
+        try {
+            const code = args.join(" ");
+            let evaled = eval(code);
+            if (typeof evaled !== "string")
+                evaled = require("util").inspect(evaled);
+                message.channel.send(clean(evaled), {code:"xl"});
+            } catch (err) {
+            message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+            }
     }
 });
+
+
+function clean(text) {
+    if (typeof(text) === "string")
+      return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+    else
+        return text;
+  }
