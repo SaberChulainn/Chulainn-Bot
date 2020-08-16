@@ -2,6 +2,7 @@ module.exports = {
 	name: 'avatar',
 	description: 'Display user avatar',
 	execute(message, args) {
-		message.channel.send(message.author.displayAvatarURL())
-	},
+        let user = message.mentions.users.first() || message.author;
+        message.channel.send(user.displayAvatarURL());
+    },
 };
