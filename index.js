@@ -28,3 +28,23 @@ client.on('message', message => {
 	    message.reply('there was an error trying to execute that command!');
 }
 });
+
+// const streamer = 'insertstreamerhere';
+
+// const api = `https://api.twitch.tv/kraken/streams?&user_login="${streamer}"`;
+// const announcements = bot.channels.find(`name`, "announcements");
+
+// // snekfetch.get(api).set('Client-ID', "XXXXXXXXXXXXX").then(r => {
+// //     if (r.body.stream === null) {
+// //         setInterval(() => {
+// //             snekfetch.get(api).then(console.log(r.body))
+// //         }, 30000);
+// //     } else {
+// //         //Do other stuff console.log is temporary
+// //         console.log(r.body);
+// //     }
+// // }
+
+function getStream() {
+    fetch("https://api.twitch.tv/helix/search/channels?query=loserfruit")
+}

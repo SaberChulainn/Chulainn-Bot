@@ -17,7 +17,10 @@
   },
   "homepage": "https://github.com/SaberChulainn/Chulainn-Bot#readme",
   "dependencies": {
+    "@discordjs/opus": "^0.3.2",
     "discord.js": "^12.2.0",
-    "jikan-node": "^1.2.1"
+    "ffmpeg-static": "^4.2.7",
+    "jikan-node": "^1.2.1",
+    "ytdl-core": "^3.2.1"
   }
 }
