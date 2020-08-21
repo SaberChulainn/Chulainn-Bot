@@ -1,8 +1,14 @@
+const config = require("../config.json");
 module.exports = {
 	name: 'eval',
 	description: 'Eval command',
 	execute(message, args) {
-        if(message.author.id !== owner_id) return;
+        if(message.author.id != config.owner_id){
+            message.channel.send("Only the discord owner can use this command");
+            console.log(message.author.id);
+            console.log(owner_id);
+            return;
+        } 
         try {
             const code = args.join(" ");
             let evaled = eval(code);
