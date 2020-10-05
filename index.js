@@ -1,8 +1,10 @@
 const Discord = require("discord.js");
 const fs = require('fs');
-const {owner_id, prefix, BOT_TOKEN} = require('./config.json');
+const {owner_id, prefix, BOT_TOKEN, client_id} = require('./config.json');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js')); // gets all file in command folder
 const client = new Discord.Client();
+const fetch = require('node-fetch');
+const id = "xtyalter";
 
 
 
@@ -15,7 +17,7 @@ for (const file of commandFiles) {
 }
 
 client.login(BOT_TOKEN);
-
+getTwitchAPI();
 client.on('message', message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
@@ -29,22 +31,13 @@ client.on('message', message => {
 }
 });
 
-// const streamer = 'insertstreamerhere';
-
-// const api = `https://api.twitch.tv/kraken/streams?&user_login="${streamer}"`;
-// const announcements = bot.channels.find(`name`, "announcements");
-
-// // snekfetch.get(api).set('Client-ID', "XXXXXXXXXXXXX").then(r => {
-// //     if (r.body.stream === null) {
-// //         setInterval(() => {
-// //             snekfetch.get(api).then(console.log(r.body))
-// //         }, 30000);
-// //     } else {
-// //         //Do other stuff console.log is temporary
-// //         console.log(r.body);
-// //     }
-// // }
-
-function getStream() {
-    fetch("https://api.twitch.tv/helix/search/channels?query=loserfruit")
+function getTwitchAPI(){
+    fetch(`https://api.twitch.tv/helix/streams?user_login=${id}`, {
+        method: 'GET',
+        headers: {
+            'Client-ID': client_id,
+        }
+    })
+    .then(res => res.json())
+    .then(res => console.log(res))
 }
